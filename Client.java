@@ -17,10 +17,10 @@ public class Client extends JFrame {
         setTitle("R JARN PAO GAME ✍️");
         setSize(1000, 600);
 
-        JPanel contentPane = new JPanel();
-        contentPane.setLayout(new BorderLayout());
-        contentPane.setBackground(Color.BLACK);
-        setContentPane(contentPane);
+        JPanel screenContent = new JPanel();
+        screenContent.setLayout(new BorderLayout());
+        screenContent.setBackground(Color.BLACK);
+        setContentPane(screenContent);
 
         chatBox = new JTextArea();
         chatBox.setEditable(false);
@@ -29,12 +29,12 @@ public class Client extends JFrame {
         chatBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
         JScrollPane scrollPane = new JScrollPane(chatBox);
-        contentPane.add(scrollPane, BorderLayout.CENTER);
+        screenContent.add(scrollPane, BorderLayout.CENTER);
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
         inputPanel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        contentPane.add(inputPanel, BorderLayout.SOUTH);
+        screenContent.add(inputPanel, BorderLayout.SOUTH);
 
         inputBox = new JTextField();
         inputBox.setBackground(Color.BLACK);

@@ -14,6 +14,7 @@ public class Server {
             Socket clientSocket = server.accept();
             cilentManage client = new cilentManage(clientSocket, clients, clientCount);
             clientCount += 1;
+            System.out.println("----------------------------------------");
             System.out.println("Student " + clientCount + " connected.");
             clients.add(client);
             new Thread(client).start();
@@ -137,9 +138,13 @@ class cilentManage implements Runnable {
                 clients.get(id).output.println("You got Grade F ");
                 clients.get(id).output.println("You need to try harder one day you will be the best.");
             }
+            System.out.println("----------------------------------------");
+            System.out.println("Student " + (clients.get(id).id + 1) );
             System.out.println("Student " + (clients.get(id).id + 1)  + " got " + point + " point" );
+            System.out.println("Student " + (clients.get(id).id + 1) + " is finish.");
         } catch (IOException e) {
-            System.out.println("Student " + (clients.get(id).id + 1)  + " disconnected.");
+            System.out.println("----------------------------------------");
+            System.out.println("Student " + (clients.get(id).id + 1) + " disconnected while not finish.");
             clients.remove(this);
         } finally {
             try {
