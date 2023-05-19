@@ -1,6 +1,5 @@
 # Java Play Game With Ajarn Pao
 
-![Banner](put-link-to-banner-image-if-you-have-one)
 
 This repository contains the source code of the game "Java Play Game with Ajarn Pao", a fun and engaging game developed using Java. 
 
