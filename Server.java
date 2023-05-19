@@ -79,25 +79,40 @@ class cilentManage implements Runnable {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("\nYou are answer " + message );
-                        clients.get(id).output.println("Correct , you have " + (point) + " point.");
-                        clients.get(id).output.println("--------------------------------------------------------------Next question------------------------------------------------------------------");
+                        clients.get(id).output.println("\n-----You are answer " + message + "." );
+                        clients.get(id).output.println("-----Correct , you have " + (point) + " point.");
+                        clients.get(id).output.println("--------------------------------------------------------------Next question.------------------------------------------------------------------");
                     } else {
-                        clients.get(id).output.println("\nYou are answer " + message );
-                        clients.get(id).output.println("Wrong , you have " + (point) + " point.");
-                        clients.get(id).output.println("The answer is " + question[1] + "\n");
-                        clients.get(id).output.println("--------------------------------------------------------------Next question------------------------------------------------------------------");
+                        if ( message.equalsIgnoreCase("") ){
+                            clients.get(id).output.println("\n-----You are answer nothing.");
+                            clients.get(id).output.println("-----You have " + (point) + " point.\n");
+                            clients.get(id).output.println("--------------------------------------------------------------Next question.------------------------------------------------------------------");
+                        } else {
+                        clients.get(id).output.println("\n-----You are answer " + message + "." );
+                        clients.get(id).output.println("-----Wrong , you have " + (point) + " point.");
+                        clients.get(id).output.println("-----The answer is " + question[1] + "." + "\n");
+                        clients.get(id).output.println("--------------------------------------------------------------Next question.------------------------------------------------------------------");
                     } 
+                }
                 } else {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("Correct , you have " + (point) + " point.");
+                        clients.get(id).output.println("\n-----You are answer " + message + "." );
+                        clients.get(id).output.println("-----Correct , you have " + (point) + " point.");
                         clients.get(id).output.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+                    
                     } else {
-                        clients.get(id).output.println("Wrong , you have " + 0 + " point.");
-                        clients.get(id).output.println("The answer is " + question[1] + "\n");
+                        if ( message.equalsIgnoreCase("") ){
+                            clients.get(id).output.println("\n-----You are answer nothing.");
+                            clients.get(id).output.println("-----You have " + (point) + " point.\n");
+                            clients.get(id).output.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
+                        } else {
+                        clients.get(id).output.println("\n-----You are answer " + message + "." );
+                        clients.get(id).output.println("-----Wrong , you have " + 0 + " point.");
+                        clients.get(id).output.println("-----The answer is " + question[1] + "\n");
                         clients.get(id).output.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+                        }
                     } 
                 }
             } 

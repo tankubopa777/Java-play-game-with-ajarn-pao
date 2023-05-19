@@ -15,7 +15,7 @@ public class Client extends JFrame {
     public Client() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("R JARN PAO GAME");
-        setSize(600, 600);
+        setSize(1000, 600);
 
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
@@ -26,17 +26,20 @@ public class Client extends JFrame {
         chatBox.setEditable(false);
         chatBox.setBackground(Color.BLACK);
         chatBox.setForeground(Color.GREEN); 
+        chatBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
         JScrollPane scrollPane = new JScrollPane(chatBox);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
+        inputPanel.setFont(new Font("Tahoma", Font.PLAIN, 20));
         contentPane.add(inputPanel, BorderLayout.SOUTH);
 
         inputBox = new JTextField();
         inputBox.setBackground(Color.BLACK);
-        inputBox.setForeground(Color.GREEN); 
+        inputBox.setForeground(Color.GREEN);
+        inputBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
         inputBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +49,7 @@ public class Client extends JFrame {
         inputPanel.add(inputBox, BorderLayout.CENTER);
 
         sendButton = new JButton("Answer arjarn Pao");
+        sendButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
         sendButton.setBackground(Color.BLUE);
         sendButton.setForeground(Color.PINK); 
         sendButton.addActionListener(new ActionListener() {
