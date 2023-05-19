@@ -37,10 +37,10 @@ class cilentManage implements Runnable {
         output = new PrintWriter(clientSocket.getOutputStream(), true);
 
         if (id == 0) {
-            output.println("-------------------------------------------------------- You are the first player. -----------------------------------------------------------------");
+            output.println("-------------------------------------------------------- You are the first student. -----------------------------------------------------------------");
         } else {
             id += 1;
-            output.println("------------------------------------------------------------- You are player " + id + ". -----------------------------------------------------------------"); ;
+            output.println("------------------------------------------------------------- You are student " + id + ". -----------------------------------------------------------------"); ;
             id -= 1;
         }
 
@@ -98,18 +98,18 @@ class cilentManage implements Runnable {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("\n-----You are answer " + message + "." );
+                        clients.get(id).output.println("\n-----You are answer " + message + ". " );
                         clients.get(id).output.println("-----Correct , you have " + (point) + " point.");
                         clients.get(id).output.println("----------------------------------------------------------------------------------------------------------------------------------------------");
                     
                     } else {
                         if ( message.equalsIgnoreCase("") ){
-                            clients.get(id).output.println("\n-----You are answer nothing.");
+                            clients.get(id).output.println("\n-----You are answer nothing. ");
                             clients.get(id).output.println("-----You have " + (point) + " point.\n");
                             clients.get(id).output.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
                         } else {
                         clients.get(id).output.println("\n-----You are answer " + message + "." );
-                        clients.get(id).output.println("-----Wrong , you have " + 0 + " point.");
+                        clients.get(id).output.println("-----Wrong , you have " + 0 + " point. ");
                         clients.get(id).output.println("-----The answer is " + question[1] + "\n");
                         clients.get(id).output.println("---------------------------------------------------------------------------------------------------------------------------------------------");
                         }
@@ -119,27 +119,27 @@ class cilentManage implements Runnable {
 
             clients.get(id).output.println("\nYou got " + point + " point.");
             if (point >= 10){
-                clients.get(id).output.println("You got Grade A");
+                clients.get(id).output.println("You got Grade A ");
                 clients.get(id).output.println("Good job!!! You can learn CN410.");
             } else if (point >= 8){
-                clients.get(id).output.println("You got Grade B");
+                clients.get(id).output.println("You got Grade B ");
                 clients.get(id).output.println("Nice!!! You can learn CN410.");
             } else if (point >= 6){
-                clients.get(id).output.println("You got Grade C");
+                clients.get(id).output.println("You got Grade C ");
                 clients.get(id).output.println("Good! You can learn CN410.");
             } else if (point >= 4){
-                clients.get(id).output.println("You got Grade D+");
+                clients.get(id).output.println("You got Grade D+ ");
                 clients.get(id).output.println("Good! You need to practice more.");
             } else if (point >= 2){
-                clients.get(id).output.println("You got Grade D");
+                clients.get(id).output.println("You got Grade D ");
                 clients.get(id).output.println("You need to try harder you are good one.");
             } else {
-                clients.get(id).output.println("You got Grade F");
+                clients.get(id).output.println("You got Grade F ");
                 clients.get(id).output.println("You need to try harder one day you will be the best.");
             }
             System.out.println("Student " + (clients.get(id).id + 1)  + " got " + point + " point" );
         } catch (IOException e) {
-            System.out.println("Student disconnected.");
+            System.out.println("Student " + (clients.get(id).id + 1)  + " disconnected.");
             clients.remove(this);
         } finally {
             try {

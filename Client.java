@@ -14,7 +14,7 @@ public class Client extends JFrame {
 
     public Client() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("R JARN PAO GAME");
+        setTitle("R JARN PAO GAME ✍️");
         setSize(1000, 600);
 
         JPanel contentPane = new JPanel();
