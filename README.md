@@ -35,8 +35,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## How to Play
 
-1.You need run server file first before start client.
-2.Start client and let's fun.
+1. You need run server file first before start client.
+2. Start client and let's fun.
 
 ## Contributing
 
