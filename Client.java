@@ -62,9 +62,7 @@ public class Client extends JFrame {
         input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         output = new PrintWriter(socket.getOutputStream(), true);
 
-        Thread readerThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        while (true) {
                 String message;
                 try {
                     while ((message = input.readLine()) != null) {
@@ -73,10 +71,7 @@ public class Client extends JFrame {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        });
-        readerThread.start();
-    }
+            }}
 
     public static void main(String[] args) throws IOException {
         Client client = new Client();

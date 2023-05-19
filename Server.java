@@ -78,7 +78,7 @@ class cilentManage implements Runnable {
                         clients.get(id).output.println("Correct , you have " + (point) + " point");
                         clients.get(id).output.println("--------------------------------------------------------------Next question------------------------------------------------------------------");
                     } else {
-                        clients.get(id).output.println("Wrong , you have " + 0 + " point");
+                        clients.get(id).output.println("Wrong , you have " + (point) + " point");
                         clients.get(id).output.println("The answer is " + question[1] + "\n");
                         clients.get(id).output.println("--------------------------------------------------------------Next question------------------------------------------------------------------");
                     } 
@@ -115,9 +115,9 @@ class cilentManage implements Runnable {
                 clients.get(id).output.println("You got Grade F");
                 clients.get(id).output.println("You need to try harder");
             }
-            System.out.println("Client " + (clients.get(id).id + 1)  + " got " + point + " point" );
+            System.out.println("Student " + (clients.get(id).id + 1)  + " got " + point + " point" );
         } catch (IOException e) {
-            System.out.println("Client disconnected.");
+            System.out.println("Student disconnected.");
             clients.remove(this);
         } finally {
             try {
