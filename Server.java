@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+
+// การทำงานของ server
 public class Server {
     private static ArrayList<cilentManage> clients = new ArrayList<>();
     private static int clientCount = 0;
@@ -11,13 +13,15 @@ public class Server {
         while (true) {
             Socket clientSocket = server.accept();
             cilentManage client = new cilentManage(clientSocket, clients, clientCount);
-            System.out.println("Client " + ++clientCount + " connected.");
+            clientCount += 1;
+            System.out.println("Student " + clientCount + " connected.");
             clients.add(client);
             new Thread(client).start();
         }
     }
 }
 
+// จัดการการทำงาน Thread ใน 1 Thread ของแต่ละ Client
 class cilentManage implements Runnable {
     private Socket clientSocket;
     private BufferedReader input;
@@ -43,7 +47,7 @@ class cilentManage implements Runnable {
        
     }
     
-    
+    // การทำงานของ Thread 
     public void run() {
     int count = 0;
     int point = 0;
@@ -60,7 +64,7 @@ class cilentManage implements Runnable {
                 {"______ is used to enable a process to be larger than the amount of memory allocated to it. \nThe basic idea of this is that only instructions and data \n that are needed at any given time are kept in memory.", "overlay"},
                 {"A ______ provides a connection between two applications. Each endpoint of a communication is a ______.", "socket"},
                 {"Demand ______ is referred when not all of a process’s pages are in the RAM, \nthen the OS brings the missing(and required) pages from the disk into the RAM.", "paging"},
-                {"The ______ is available upon booting and supports hardware’s core functioning, including support for I/O devices, internal and external storage retrieval,\n and more. It is an essential part of computer and server functioning", "os"},
+                {"The ______ is available upon booting and supports hardware’s core functioning, including support for I/O \ndevices, internal and external storage retrieval,\n and more. It is an essential part of computer and server functioning", "os"},
         };
         String message;
        
@@ -75,10 +79,12 @@ class cilentManage implements Runnable {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("Correct , you have " + (point) + " point");
+                        clients.get(id).output.println("\nYou are answer " + message );
+                        clients.get(id).output.println("Correct , you have " + (point) + " point.");
                         clients.get(id).output.println("--------------------------------------------------------------Next question------------------------------------------------------------------");
                     } else {
-                        clients.get(id).output.println("Wrong , you have " + (point) + " point");
+                        clients.get(id).output.println("\nYou are answer " + message );
+                        clients.get(id).output.println("Wrong , you have " + (point) + " point.");
                         clients.get(id).output.println("The answer is " + question[1] + "\n");
                         clients.get(id).output.println("--------------------------------------------------------------Next question------------------------------------------------------------------");
                     } 
@@ -86,34 +92,35 @@ class cilentManage implements Runnable {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("Correct , you have " + (point) + " point");
+                        clients.get(id).output.println("Correct , you have " + (point) + " point.");
                         clients.get(id).output.println("----------------------------------------------------------------------------------------------------------------------------------------------");
                     } else {
-                        clients.get(id).output.println("Wrong , you have " + 0 + " point");
+                        clients.get(id).output.println("Wrong , you have " + 0 + " point.");
                         clients.get(id).output.println("The answer is " + question[1] + "\n");
                         clients.get(id).output.println("---------------------------------------------------------------------------------------------------------------------------------------------");
                     } 
                 }
             } 
 
-            clients.get(id).output.println("\nYou got " + point + " point");
+            clients.get(id).output.println("\nYou got " + point + " point.");
             if (point >= 10){
                 clients.get(id).output.println("You got Grade A");
-                clients.get(id).output.println("Good job!!! You can learn CN310");
+                clients.get(id).output.println("Good job!!! You can learn CN410.");
             } else if (point >= 8){
                 clients.get(id).output.println("You got Grade B");
-                clients.get(id).output.println("Nice!!! You can learn CN310");
+                clients.get(id).output.println("Nice!!! You can learn CN410.");
             } else if (point >= 6){
                 clients.get(id).output.println("You got Grade C");
-                clients.get(id).output.println("Good! You can learn CN310");
+                clients.get(id).output.println("Good! You can learn CN410.");
             } else if (point >= 4){
                 clients.get(id).output.println("You got Grade D+");
+                clients.get(id).output.println("Good! You need to practice more.");
             } else if (point >= 2){
                 clients.get(id).output.println("You got Grade D");
-                clients.get(id).output.println("You need to try harder");
+                clients.get(id).output.println("You need to try harder you are good one.");
             } else {
                 clients.get(id).output.println("You got Grade F");
-                clients.get(id).output.println("You need to try harder");
+                clients.get(id).output.println("You need to try harder one day you will be the best.");
             }
             System.out.println("Student " + (clients.get(id).id + 1)  + " got " + point + " point" );
         } catch (IOException e) {
@@ -125,6 +132,6 @@ class cilentManage implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }                  
     }
 }

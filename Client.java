@@ -5,8 +5,8 @@ import java.io.*;
 import java.net.*;
 
 public class Client extends JFrame {
-    private JTextArea chatArea;
-    private JTextField inputField;
+    private JTextArea chatBox;
+    private JTextField inputBox;
     private JButton sendButton;
     private Socket socket;
     private BufferedReader input;
@@ -19,27 +19,35 @@ public class Client extends JFrame {
 
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
+        contentPane.setBackground(Color.BLACK);
         setContentPane(contentPane);
 
-        chatArea = new JTextArea();
-        chatArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(chatArea);
+        chatBox = new JTextArea();
+        chatBox.setEditable(false);
+        chatBox.setBackground(Color.BLACK);
+        chatBox.setForeground(Color.GREEN); 
+
+        JScrollPane scrollPane = new JScrollPane(chatBox);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
         contentPane.add(inputPanel, BorderLayout.SOUTH);
 
-        inputField = new JTextField();
-        inputField.addActionListener(new ActionListener() {
+        inputBox = new JTextField();
+        inputBox.setBackground(Color.BLACK);
+        inputBox.setForeground(Color.GREEN); 
+        inputBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sendMessage();
             }
         });
-        inputPanel.add(inputField, BorderLayout.CENTER);
+        inputPanel.add(inputBox, BorderLayout.CENTER);
 
         sendButton = new JButton("Answer arjarn Pao");
+        sendButton.setBackground(Color.BLUE);
+        sendButton.setForeground(Color.PINK); 
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,9 +60,9 @@ public class Client extends JFrame {
     }
 
     private void sendMessage() {
-        String message = inputField.getText();
+        String message = inputBox.getText();
         output.println(message);
-        inputField.setText("");
+        inputBox.setText("");
     }
 
     public void connect() throws IOException {
@@ -66,7 +74,7 @@ public class Client extends JFrame {
                 String message;
                 try {
                     while ((message = input.readLine()) != null) {
-                        chatArea.append(message + "\n");
+                        chatBox.append(message + "\n");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
