@@ -37,10 +37,10 @@ class cilentManage implements Runnable {
         output = new PrintWriter(clientSocket.getOutputStream(), true);
 
         if (id == 0) {
-            output.println("-------------------------------------------------------- You are the first student. -----------------------------------------------------------------");
+            output.println("------------------------------------------------------ You are the first student. -----------------------------------------------------------------");
         } else {
             id += 1;
-            output.println("------------------------------------------------------------- You are student " + id + ". -----------------------------------------------------------------"); ;
+            output.println("----------------------------------------------------------- You are student " + id + ". -----------------------------------------------------------------"); ;
             id -= 1;
         }
 
@@ -81,17 +81,17 @@ class cilentManage implements Runnable {
                         point += 1;
                         clients.get(id).output.println("\n-----You are answer " + message + "." );
                         clients.get(id).output.println("-----Correct , you have " + (point) + " point.");
-                        clients.get(id).output.println("--------------------------------------------------------------Next question.------------------------------------------------------------------");
+                        clients.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
                     } else {
                         if ( message.equalsIgnoreCase("") ){
                             clients.get(id).output.println("\n-----You are answer nothing.");
                             clients.get(id).output.println("-----You have " + (point) + " point.\n");
-                            clients.get(id).output.println("--------------------------------------------------------------Next question.------------------------------------------------------------------");
+                            clients.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
                         } else {
                         clients.get(id).output.println("\n-----You are answer " + message + "." );
                         clients.get(id).output.println("-----Wrong , you have " + (point) + " point.");
                         clients.get(id).output.println("-----The answer is " + question[1] + "." + "\n");
-                        clients.get(id).output.println("--------------------------------------------------------------Next question.------------------------------------------------------------------");
+                        clients.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
                     } 
                 }
                 } else {

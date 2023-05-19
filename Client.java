@@ -48,7 +48,7 @@ public class Client extends JFrame {
         });
         inputPanel.add(inputBox, BorderLayout.CENTER);
 
-        sendButton = new JButton("Answer arjarn Pao");
+        sendButton = new JButton("Answer arjarn Pao ");
         sendButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
         sendButton.setBackground(Color.BLUE);
         sendButton.setForeground(Color.PINK); 
