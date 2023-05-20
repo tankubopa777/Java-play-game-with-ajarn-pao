@@ -9,7 +9,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket server = new ServerSocket(7777);
-        System.out.println("Server is running...");
+        System.out.println("Server started.");
         while (true) {
             Socket studentSocket = server.accept();
             studentManage student = new studentManage(studentSocket, students, studentCount);
