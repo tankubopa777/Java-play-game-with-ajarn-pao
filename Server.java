@@ -2,40 +2,40 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-// การทำงานของ server
+// การทำงานของ Server
 public class Server {
-    private static ArrayList<cilentManage> clients = new ArrayList<>();
-    private static int clientCount = 0;
+    private static ArrayList<studentManage> students = new ArrayList<>();
+    private static int studentCount = 0;
 
     public static void main(String[] args) throws IOException {
-        ServerSocket server = new ServerSocket(9001);
+        ServerSocket server = new ServerSocket(7777);
         System.out.println("Server is running...");
         while (true) {
-            Socket clientSocket = server.accept();
-            cilentManage client = new cilentManage(clientSocket, clients, clientCount);
-            clientCount += 1;
+            Socket studentSocket = server.accept();
+            studentManage student = new studentManage(studentSocket, students, studentCount);
+            studentCount += 1;
             System.out.println("----------------------------------------");
-            System.out.println("Student " + clientCount + " connected.");
-            clients.add(client);
-            new Thread(client).start();
+            System.out.println("Student " + studentCount + " connected.");
+            students.add(student);
+            new Thread(student).start();
         }
     }
 }
 
-// จัดการการทำงาน Thread ใน 1 Thread ของแต่ละ Client
-class cilentManage implements Runnable {
-    private Socket clientSocket;
+// จัดการการทำงาน Thread ใน 1 Thread ของแต่ละ student
+class studentManage implements Runnable {
+    private Socket studentSocket;
     private BufferedReader input;
     private PrintWriter output;
-    private ArrayList<cilentManage> clients;
+    private ArrayList<studentManage> students;
     private int id;
        
-    public cilentManage(Socket clientSocket, ArrayList<cilentManage> clients, int id) throws IOException {
-        this.clientSocket = clientSocket;
-        this.clients = clients;
+    public studentManage(Socket studentSocket, ArrayList<studentManage> students, int id) throws IOException {
+        this.studentSocket = studentSocket;
+        this.students = students;
         this.id = id;
-        input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        output = new PrintWriter(clientSocket.getOutputStream(), true);
+        input = new BufferedReader(new InputStreamReader(studentSocket.getInputStream()));
+        output = new PrintWriter(studentSocket.getOutputStream(), true);
 
         if (id == 0) {
             output.println("------------------------------------------------------ You are the first student. -----------------------------------------------------------------");
@@ -80,75 +80,75 @@ class cilentManage implements Runnable {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("\n-----You are answer " + message + "." );
-                        clients.get(id).output.println("-----Correct , you have " + (point) + " point.");
-                        clients.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
+                        students.get(id).output.println("\n-----You are answer " + message + "." );
+                        students.get(id).output.println("-----Correct , you have " + (point) + " point.");
+                        students.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
                     } else {
                         if ( message.equalsIgnoreCase("") ){
-                            clients.get(id).output.println("\n-----You are answer nothing.");
-                            clients.get(id).output.println("-----You have " + (point) + " point.\n");
-                            clients.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
+                            students.get(id).output.println("\n-----You are answer nothing.");
+                            students.get(id).output.println("-----You have " + (point) + " point.\n");
+                            students.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
                         } else {
-                        clients.get(id).output.println("\n-----You are answer " + message + "." );
-                        clients.get(id).output.println("-----Wrong , you have " + (point) + " point.");
-                        clients.get(id).output.println("-----The answer is " + question[1] + "." + "\n");
-                        clients.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
+                        students.get(id).output.println("\n-----You are answer " + message + "." );
+                        students.get(id).output.println("-----Wrong , you have " + (point) + " point.");
+                        students.get(id).output.println("-----The answer is " + question[1] + "." + "\n");
+                        students.get(id).output.println("------------------------------------------------------------Next question.------------------------------------------------------------------");
                     } 
                 }
                 } else {
                     count += 1;
                     if ( message.equalsIgnoreCase(question[1]) ){
                         point += 1;
-                        clients.get(id).output.println("\n-----You are answer " + message + ". " );
-                        clients.get(id).output.println("-----Correct , you have " + (point) + " point.");
-                        clients.get(id).output.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+                        students.get(id).output.println("\n-----You are answer " + message + ". " );
+                        students.get(id).output.println("-----Correct , you have " + (point) + " point.");
+                        students.get(id).output.println("----------------------------------------------------------------------------------------------------------------------------------------------");
                     
                     } else {
                         if ( message.equalsIgnoreCase("") ){
-                            clients.get(id).output.println("\n-----You are answer nothing. ");
-                            clients.get(id).output.println("-----You have " + (point) + " point.\n");
-                            clients.get(id).output.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
+                            students.get(id).output.println("\n-----You are answer nothing. ");
+                            students.get(id).output.println("-----You have " + (point) + " point.\n");
+                            students.get(id).output.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
                         } else {
-                        clients.get(id).output.println("\n-----You are answer " + message + "." );
-                        clients.get(id).output.println("-----Wrong , you have " + 0 + " point. ");
-                        clients.get(id).output.println("-----The answer is " + question[1] + "\n");
-                        clients.get(id).output.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+                        students.get(id).output.println("\n-----You are answer " + message + "." );
+                        students.get(id).output.println("-----Wrong , you have " + 0 + " point. ");
+                        students.get(id).output.println("-----The answer is " + question[1] + "\n");
+                        students.get(id).output.println("---------------------------------------------------------------------------------------------------------------------------------------------");
                         }
                     } 
                 }
             } 
 
-            clients.get(id).output.println("\nYou got " + point + " point.");
+            students.get(id).output.println("\nYou got " + point + " point.");
             if (point >= 10){
-                clients.get(id).output.println("You got Grade A ");
-                clients.get(id).output.println("Good job!!! You can learn CN410.");
+                students.get(id).output.println("You got Grade A ");
+                students.get(id).output.println("Good job!!! You can learn CN410.");
             } else if (point >= 8){
-                clients.get(id).output.println("You got Grade B ");
-                clients.get(id).output.println("Nice!!! You can learn CN410.");
+                students.get(id).output.println("You got Grade B ");
+                students.get(id).output.println("Nice!!! You can learn CN410.");
             } else if (point >= 6){
-                clients.get(id).output.println("You got Grade C ");
-                clients.get(id).output.println("Good! You can learn CN410.");
+                students.get(id).output.println("You got Grade C ");
+                students.get(id).output.println("Good! You can learn CN410.");
             } else if (point >= 4){
-                clients.get(id).output.println("You got Grade D+ ");
-                clients.get(id).output.println("Good! You need to practice more.");
+                students.get(id).output.println("You got Grade D+ ");
+                students.get(id).output.println("Good! You need to practice more.");
             } else if (point >= 2){
-                clients.get(id).output.println("You got Grade D ");
-                clients.get(id).output.println("You need to try harder you are good one.");
+                students.get(id).output.println("You got Grade D ");
+                students.get(id).output.println("You need to try harder you are good one.");
             } else {
-                clients.get(id).output.println("You got Grade F ");
-                clients.get(id).output.println("You need to try harder one day you will be the best.");
+                students.get(id).output.println("You got Grade F ");
+                students.get(id).output.println("You need to try harder one day you will be the best.");
             }
             System.out.println("----------------------------------------");
-            System.out.println("Student " + (clients.get(id).id + 1) );
-            System.out.println("Student " + (clients.get(id).id + 1)  + " got " + point + " point" );
-            System.out.println("Student " + (clients.get(id).id + 1) + " is finish.");
+            System.out.println("Student " + (students.get(id).id + 1) );
+            System.out.println("Student " + (students.get(id).id + 1)  + " got " + point + " point" );
+            System.out.println("Student " + (students.get(id).id + 1) + " is finish.");
         } catch (IOException e) {
             System.out.println("----------------------------------------");
-            System.out.println("Student " + (clients.get(id).id + 1) + " disconnected while not finish.");
-            clients.remove(this);
+            System.out.println("Student " + (students.get(id).id + 1) + " disconnected while not finish.");
+            students.remove(this);
         } finally {
             try {
-                clientSocket.close();
+                studentSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

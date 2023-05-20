@@ -4,15 +4,17 @@ import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 
-public class Client extends JFrame {
+public class Student extends JFrame {
+    // ส่วนของ GUI 
     private JTextArea chatBox;
     private JTextField inputBox;
     private JButton sendButton;
+    // ส่วนของการเชื่อมต่อกับ Server
     private Socket socket;
     private BufferedReader input;
     private PrintWriter output;
 
-    public Client() {
+    public Student() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("R JARN PAO GAME ✍️");
         setSize(1000, 600);
@@ -70,7 +72,7 @@ public class Client extends JFrame {
     }
 
     public void connect() throws IOException {
-        socket = new Socket("localhost", 9001);
+        socket = new Socket("localhost", 7777);
         input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         output = new PrintWriter(socket.getOutputStream(), true);
 
@@ -86,7 +88,7 @@ public class Client extends JFrame {
             }}
 
     public static void main(String[] args) throws IOException {
-        Client client = new Client();
-        client.connect();
+        Student Student = new Student();
+        Student.connect();
     }
 }
